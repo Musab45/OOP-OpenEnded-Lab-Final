@@ -17,6 +17,7 @@ char menu_choice;
 char student_portal_choice;
 char course_portal_choice;
 char course_enrollment_choice;
+char teacher_portal_choice;
 
 //Object Creation
 Student student1;
@@ -26,6 +27,7 @@ Student student4;
 Student student5;
 //For login data transfer
 Student active_student;
+Teacher active_teacher;
 
 Teacher teacher1;
 Teacher teacher2;
@@ -38,7 +40,7 @@ Course course3 = {"CS103", "Algorithms"};
 //Funtions
 //For Student
 
-//create account
+//create student account
 void create_student_account()
 {
 	string id;
@@ -87,6 +89,42 @@ void create_student_account()
 	}
 }
 
+//create teacher account
+void create_teacher_account()
+{
+	string id;
+	string name;
+	string password;
+
+	cout << "Enter Teacher ID: ";
+	cin >> id;
+	cout << "Enter Teacher Name: ";
+	cin >> name;
+	cout << "Enter Teacher Password: ";
+	cin >> password;
+	if (id == "001")
+	{
+		teacher1.set_teacher_id(id);
+		teacher1.set_teacher_name(name);
+		teacher1.set_teacher_password(password);
+	}
+	else if (id == "002")
+	{
+		teacher2.set_teacher_id(id);
+		teacher2.set_teacher_name(name);
+		teacher2.set_teacher_password(password);
+	}
+	else if (id == "003")
+	{
+		teacher3.set_teacher_id(id);
+		teacher3.set_teacher_name(name);
+		teacher3.set_teacher_password(password);
+	}
+	else
+	{
+		cout << "Invalid ID" << endl;
+	}
+}
 
 
 
@@ -102,6 +140,18 @@ void remove_course(Student student, Course course)
 	course.remove_student(student.get_student_name());
 }
 
+//For Teacher
+void enroll_teacher_course(Teacher teacher, Course course)
+{
+	teacher.enroll_course(course);
+	//course.add_student(student.get_student_name());
+}
+
+void remove_teacher_course(Teacher teacher, Course course)
+{
+	teacher.remove_course(course);
+	//course.remove_student(student.get_student_name());
+}
 
 //Student Portal Menu
 void student_portal_menu()
@@ -118,7 +168,7 @@ void student_portal_menu()
 		switch (student_portal_choice)
 		{
 		case'1':
-			cout << "Select coursse to enroll to:" << endl;
+			cout << "Select course to enroll to:" << endl;
 			cout << "1. Introduction to Computer Sciences" << endl;
 			cout << "2. Data Structures" << endl;
 			cout << "3. Algorithms" << endl;
@@ -168,6 +218,73 @@ void student_portal_menu()
 	} while (student_portal_choice != '4');
 }
 
+
+//Teacher Portal Menu
+void teacher_portal_menu()
+{
+	char teacher_portal_choice;
+	do
+	{
+		cout << "1. Enroll Course" << endl;
+		cout << "2. Remove Course" << endl;
+		cout << "3. View Courses" << endl;
+		cout << "4. Logout" << endl;
+		cout << "Choice: ";
+		cin >> teacher_portal_choice;
+		switch (teacher_portal_choice)
+		{
+		case'1':
+			cout << "Select course to enroll to:" << endl;
+			cout << "1. Introduction to Computer Sciences" << endl;
+			cout << "2. Data Structures" << endl;
+			cout << "3. Algorithms" << endl;
+			cout << "Choice: ";
+			cin >> course_enrollment_choice;
+			switch (course_enrollment_choice)
+			{
+			case'1':
+				enroll_teacher_course(active_teacher, course1);
+				break;
+			case'2':
+				enroll_teacher_course(active_teacher, course2);
+				break;
+			case'3':
+				enroll_teacher_course(active_teacher, course3);
+				break;
+			default:
+				cout << "Invalid Choice" << endl;
+			}
+			break;
+		case'2':
+			cout << "Select course to remove to:" << endl;
+			cout << "1. Introduction to Computer Sciences" << endl;
+			cout << "2. Data Structures" << endl;
+			cout << "3. Algorithms" << endl;
+			cout << "Choice: ";
+			cin >> course_enrollment_choice;
+			switch (course_enrollment_choice)
+			{
+			case'1':
+				enroll_teacher_course(active_teacher, course1);
+				break;
+			case'2':
+				enroll_teacher_course(active_teacher, course2);
+				break;
+			case'3':
+				enroll_teacher_course(active_teacher, course3);
+				break;
+			default:
+				cout << "Invalid Choice" << endl;
+			}
+			break;
+		case'3':
+			active_teacher.view_courses();
+			break;
+		}
+	} while (teacher_portal_choice != '4');
+}
+
+
 //Login
 void login(string name, string password)
 {
@@ -207,15 +324,49 @@ void login(string name, string password)
 		student_portal_menu();
 	}
 }
+//Teacher Login
+void login_teacher(string name, string password)
+{
+	bool login_succesful = false;
+	if (name == teacher1.get_teacher_name() && password == teacher1.get_teacher_password())
+	{
+		active_teacher = teacher1;
+		login_succesful = true;
+	}
+	else if (name == teacher2.get_teacher_name() && password == teacher2.get_teacher_password())
+	{
+		active_teacher = teacher2;
+		login_succesful = true;
+	}
+	else if (name == teacher3.get_teacher_name() && password == teacher3.get_teacher_password())
+	{
+		active_teacher = teacher3;
+		login_succesful = true;
+	}
+
+	else
+	{
+		cout << "Invalid Name or Password" << endl;
+	}
+
+	if (login_succesful)
+	{
+		teacher_portal_menu();
+	}
+}
 int main()
 {
 	string student_login_name;
 	string student_login_password;
+	string teacher_login_name;
+	string teacher_login_password;
+
 
 	do
 	{
 		cout << "1. Student Portal" << endl;
 		cout << "2. Course Portal" << endl;
+		cout << "3. Teacher Portal" << endl;
 		cout << "Choice: ";
 		cin >> menu_choice;
 		switch (menu_choice)
@@ -256,16 +407,44 @@ int main()
 			switch (course_portal_choice)
 			{
 			case'1':
-				//cs1.add_student(/*student*/);
+				cout << "Enter the name of the student you want to add: ";
+				//string student_name;
+				//cin >> student_name;
+				course1.add_student("sara");
 				break;
 			case'2':
-				//cs1.view_students();
+				course1.view_students();
 				break;
 			case'3':
 				break;
 			}
 
 			break;
+		case '3':
+			cout << "Teacher Portal" << endl;
+			cout << "1.Create Teacher Account" << endl;
+			cout << "2.Login" << endl;
+			cout << "3.Logout" << endl;
+			cout << "Choice: ";
+			cin >> teacher_portal_choice;
+			switch (teacher_portal_choice)
+			{
+			case '1':
+				create_teacher_account();
+				break;
+			case '2':
+				//login
+				cout << "Enter Name: ";
+				cin >> teacher_login_name;
+				cout << "Enter Password: ";
+				cin >> teacher_login_password;
+				login(teacher_login_name, teacher_login_password);
+				break;
+			case '3':
+				break;
+			}
 		}
+		
+
 	} while (menu_choice != '4');
 }

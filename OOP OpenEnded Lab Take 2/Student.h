@@ -63,12 +63,12 @@ public:
 	void remove_course(Student student,Course course)
 	{
 		student.enrolled_courses.remove(course.get_course_name());
-		cout << "Course added successfully!" << endl;
+		cout << "Course removed successfully!" << endl;
 	}
 
 	void view_courses()
 	{
-		for (const string & item : enrolled_courses) 
+		for (auto item : enrolled_courses) 
 		{
 			cout << item << " ";
 		}

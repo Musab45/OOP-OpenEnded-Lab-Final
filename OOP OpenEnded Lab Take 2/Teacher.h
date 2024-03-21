@@ -15,6 +15,7 @@ class Teacher
 private:
 	string teacher_name;
 	string teacher_id;
+	string teacher_password;
 	list<string> courses_taught;
 public:
 	//Constructor
@@ -27,9 +28,26 @@ public:
 	{
 		return teacher_name;
 	}
+	void set_teacher_name(string x)
+	{
+		teacher_name = x;
+	}
 	string get_teacher_id()
 	{
 		return teacher_id;
+	}
+	void set_teacher_id(string x)
+	{
+		teacher_id = x;
+	}
+
+	string get_teacher_password()
+	{
+		return teacher_password;
+	}
+	void set_teacher_password(string x)
+	{
+		teacher_password = x;
 	}
 
 	//Methods
