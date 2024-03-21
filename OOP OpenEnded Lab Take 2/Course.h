@@ -16,6 +16,7 @@ private:
 	list<string> enrolled_students;
 public:
 	//Constructor
+	Course() {}
 	Course(string x, string y) :
 		course_name(x), course_id(y) {}
 
@@ -26,24 +27,20 @@ public:
 	} 
 
 	//Methods
-	void add_student()
+	void add_student(string student_name)
 	{
-		string student_name;
 		cout << "Enter the name of the student you want to add: ";
 		cin >> student_name;
 		enrolled_students.push_back(student_name);
 		cout << "Student added successfully!" << endl;
-		
 	}
 
-	void remove_student()
+	void remove_student(string student_name)
 	{
-		string student_name;
 		cout << "Enter the name of the student you want to remove: ";
 		cin >> student_name;
 		enrolled_students.remove(student_name);
 		cout << "Student removed successfully!" << endl;
-		
 	}
 
 	void view_students()

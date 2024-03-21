@@ -14,20 +14,43 @@ class Student
 private:
 	string student_name;
 	string student_id;
+	string student_password;
 	list<string> enrolled_courses;
 public:
 	//Constructor
-	Student(string x, string y):
-		student_name(x),student_id(y) {}
 
-	//Getters
+	Student() {}
+
+	Student(string x, string y, string z):
+		student_name(x),student_id(y),student_password(z) {}
+
+	//Getters&Setters
+
 	string get_student_name()
 	{
 		return student_name;
 	}
+	void set_student_name(string x)
+	{
+		student_name = x;
+	}
+
 	string get_student_id()
 	{
 		return student_id;
+	}
+	void set_student_id(string x)
+	{
+		student_id = x;
+	}
+
+	string get_student_password()
+	{
+		return student_password;
+	}
+	void set_student_password(string x)
+	{
+		student_password = x;
 	}
 
 	//Methods
