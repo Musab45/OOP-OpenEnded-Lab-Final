@@ -6,6 +6,7 @@
 #include"Student.h"
 
 using namespace std;
+class Student;
 
 class Course
 {
@@ -25,14 +26,24 @@ public:
 	} 
 
 	//Methods
-	void add_student(Student student)
+	void add_student()
 	{
-		enrolled_students.push_back(student.get_student_name());
+		string student_name;
+		cout << "Enter the name of the student you want to add: ";
+		cin >> student_name;
+		enrolled_students.push_back(student_name);
+		cout << "Student added successfully!" << endl;
+		
 	}
 
-	void remove_student(Student student)
+	void remove_student()
 	{
-		enrolled_students.remove(student.get_student_name());
+		string student_name;
+		cout << "Enter the name of the student you want to remove: ";
+		cin >> student_name;
+		enrolled_students.remove(student_name);
+		cout << "Student removed successfully!" << endl;
+		
 	}
 
 	void view_students()

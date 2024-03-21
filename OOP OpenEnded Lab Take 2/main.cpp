@@ -8,16 +8,6 @@
 
 using namespace std;
 
-void create_student()
-{
-	string name;
-	string id;
-	cout << "Enter name: ";
-	cin >> name;
-	cout << "Enter id: ";
-	cin >> id;
-}
-
 int main()
 {
 

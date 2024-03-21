@@ -4,7 +4,11 @@
 #include<list>
 #include<vector>
 #include"Course.h"
+
 using namespace std;
+
+class Course;
+
 class Student
 {
 private:
