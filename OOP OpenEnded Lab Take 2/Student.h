@@ -54,22 +54,26 @@ public:
 	}
 
 	//Methods
-	void enroll_course(Course course)
+	void enroll_course(Student student, Course course)
 	{
 		enrolled_courses.push_back(course.get_course_name());
+		cout << "Course added successfully!" << endl;
 	}
 
-	void remove_course(Course course)
+	void remove_course(Student student,Course course)
 	{
-		enrolled_courses.remove(course.get_course_name());
+		student.enrolled_courses.remove(course.get_course_name());
+		cout << "Course added successfully!" << endl;
 	}
 
 	void view_courses()
 	{
-		for (string obj : enrolled_courses)
+		for (const string & item : enrolled_courses) 
 		{
-			cout << obj << endl;
+			cout << item << " ";
 		}
+		cout << endl;
+
 	}
 };
 

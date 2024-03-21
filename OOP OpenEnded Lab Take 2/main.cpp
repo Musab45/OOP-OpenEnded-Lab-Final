@@ -12,24 +12,33 @@ class Student;
 class Course;
 class Teacher;
 
+//Choice Variables
+char menu_choice;
+char student_portal_choice;
+char course_portal_choice;
+char course_enrollment_choice;
+
 //Object Creation
 Student student1;
 Student student2;
 Student student3;
 Student student4;
 Student student5;
+//For login data transfer
+Student active_student;
 
 Teacher teacher1;
 Teacher teacher2;
 Teacher teacher3;
 
-Course course1;
-Course course2;
-Course course3;
+Course course1 = {"CS101", "Introduction to Computer Science"};
+Course course2 = {"CS102", "Data Structures"};
+Course course3 = {"CS103", "Algorithms"};
 
 //Funtions
 //For Student
 
+//create account
 void create_student_account()
 {
 	string id;
@@ -78,23 +87,131 @@ void create_student_account()
 	}
 }
 
+
+
+
 void enroll_course(Student student, Course course)
 {
-	student.enroll_course(course);
+	student.enroll_course(student, course);
 	course.add_student(student.get_student_name());
 }
 
 void remove_course(Student student, Course course)
 {
-	student.remove_course(course);
+	student.remove_course(student, course);
 	course.remove_student(student.get_student_name());
 }
 
+
+//Student Portal Menu
+void student_portal_menu()
+{
+	char student_portal_choice;
+	do
+	{
+		cout << "1. Enroll Course" << endl;
+		cout << "2. Remove Course" << endl;
+		cout << "3. View Courses" << endl;
+		cout << "4. Logout" << endl;
+		cout << "Choice: ";
+		cin >> student_portal_choice;
+		switch (student_portal_choice)
+		{
+		case'1':
+			cout << "Select coursse to enroll to:" << endl;
+			cout << "1. Introduction to Computer Sciences" << endl;
+			cout << "2. Data Structures" << endl;
+			cout << "3. Algorithms" << endl;
+			cout << "Choice: ";
+			cin >> course_enrollment_choice;
+			switch (course_enrollment_choice)
+			{
+			case'1':
+				enroll_course(active_student, course1);
+				break;
+			case'2':
+				enroll_course(active_student, course2);
+				break;
+			case'3':
+				enroll_course(active_student, course3);
+				break;
+			default:
+				cout<< "Invalid Choice" << endl;
+			}
+			break;
+		case'2':
+			cout << "Select coursse to remove to:" << endl;
+			cout << "1. Introduction to Computer Sciences" << endl;
+			cout << "2. Data Structures" << endl;
+			cout << "3. Algorithms" << endl;
+			cout << "Choice: ";
+			cin >> course_enrollment_choice;
+			switch (course_enrollment_choice)
+			{
+			case'1':
+				enroll_course(active_student, course1);
+				break;
+			case'2':
+				enroll_course(active_student, course2);
+				break;
+			case'3':
+				enroll_course(active_student, course3);
+				break;
+			default:
+				cout << "Invalid Choice" << endl;
+			}
+			break;
+		case'3':
+			active_student.view_courses();
+			break;
+		}
+	} while (student_portal_choice != '4');
+}
+
+//Login
+void login(string name, string password)
+{
+	bool login_succesful = false;
+	if (name == student1.get_student_name() && password == student1.get_student_password())
+	{
+		active_student = student1;
+		login_succesful = true;
+	}
+	else if (name == student2.get_student_name() && password == student2.get_student_password())
+	{
+		active_student = student2;
+		login_succesful = true;
+	}
+	else if (name == student3.get_student_name() && password == student3.get_student_password())
+	{
+		active_student = student3;
+		login_succesful = true;
+	}
+	else if (name == student4.get_student_name() && password == student4.get_student_password())
+	{
+		active_student = student4;
+		login_succesful = true;
+	}
+	else if (name == student5.get_student_name() && password == student5.get_student_password())
+	{
+		active_student = student5;
+		login_succesful = true;
+	}
+	else
+	{
+		cout << "Invalid Name or Password" << endl;
+	}
+
+	if (login_succesful)
+	{
+		student_portal_menu();
+	}
+}
 int main()
 {
-	char menu_choice;
-	char student_portal_choice;
-	char course_portal_choice;
+	string student_login_name;
+	string student_login_password;
+
 	do
 	{
 		cout << "1. Student Portal" << endl;
@@ -116,7 +233,12 @@ int main()
 				create_student_account();
 				break;
 			case'2':
-				cout<<"Login Not made yet"<<endl;
+				//login
+				cout<< "Enter Name: ";
+				cin >> student_login_name;
+				cout << "Enter Password: ";
+				cin >> student_login_password;
+				login(student_login_name, student_login_password);
 				break;
 			case'3':
 				

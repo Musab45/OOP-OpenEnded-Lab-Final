@@ -29,16 +29,16 @@ public:
 	//Methods
 	void add_student(string student_name)
 	{
-		cout << "Enter the name of the student you want to add: ";
-		cin >> student_name;
+		/*cout << "Enter the name of the student you want to add: ";
+		cin >> student_name;*/
 		enrolled_students.push_back(student_name);
 		cout << "Student added successfully!" << endl;
 	}
 
 	void remove_student(string student_name)
 	{
-		cout << "Enter the name of the student you want to remove: ";
-		cin >> student_name;
+		/*cout << "Enter the name of the student you want to remove: ";
+		cin >> student_name;*/
 		enrolled_students.remove(student_name);
 		cout << "Student removed successfully!" << endl;
 	}
