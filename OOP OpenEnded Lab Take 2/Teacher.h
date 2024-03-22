@@ -67,11 +67,6 @@ public:
 		}
 		cout << "Course Not Found";
 	}
-
-	/*void remove_course(Course course)
-	{
-		courses_taught.remove(course.get_course_name());
-	}*/
 	void view_courses()
 	{
 		if (courses_taught.empty()) {
@@ -84,11 +79,4 @@ public:
 		cout << endl;
 	}
 
-	/*void view_courses()
-	{
-		for (string obj : courses_taught)
-		{
-			cout << obj << endl;
-		}
-	}*/
 };

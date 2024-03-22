@@ -126,19 +126,6 @@ void create_teacher_account()
 	}
 }
 
-//For Teacher
-/*void enroll_teacher_course(Teacher teacher, Course course)
-{
-	teacher.enroll_course(course);
-	//course.add_student(student.get_student_name());
-}
-
-void remove_teacher_course(Teacher teacher, Course course)
-{
-	teacher.remove_course(course);
-	//course.remove_student(student.get_student_name());
-}*/
-
 //Student Portal Menu
 void student_portal_menu()
 {
