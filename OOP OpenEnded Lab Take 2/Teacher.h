@@ -54,18 +54,41 @@ public:
 	void enroll_course(Course course)
 	{
 		courses_taught.push_back(course.get_course_name());
+		cout << "Course Added Sucessfully!" << endl;
 	}
-
 	void remove_course(Course course)
 	{
-		courses_taught.remove(course.get_course_name());
+		for (auto it = courses_taught.begin(); it != courses_taught.end(); ++it) {
+			if (*it == course.get_course_name()) {
+				courses_taught.erase(it);
+				cout << "Course removed successfully!" << endl;
+				return;
+			}
+		}
+		cout << "Course Not Found";
 	}
 
+	/*void remove_course(Course course)
+	{
+		courses_taught.remove(course.get_course_name());
+	}*/
 	void view_courses()
+	{
+		if (courses_taught.empty()) {
+			cout << "No course to remove!";
+		}
+		for (auto item : courses_taught)
+		{
+			cout << item << " ";
+		}
+		cout << endl;
+	}
+
+	/*void view_courses()
 	{
 		for (string obj : courses_taught)
 		{
 			cout << obj << endl;
 		}
-	}
+	}*/
 };

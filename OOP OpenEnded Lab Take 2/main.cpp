@@ -127,7 +127,7 @@ void create_teacher_account()
 }
 
 //For Teacher
-void enroll_teacher_course(Teacher teacher, Course course)
+/*void enroll_teacher_course(Teacher teacher, Course course)
 {
 	teacher.enroll_course(course);
 	//course.add_student(student.get_student_name());
@@ -137,7 +137,7 @@ void remove_teacher_course(Teacher teacher, Course course)
 {
 	teacher.remove_course(course);
 	//course.remove_student(student.get_student_name());
-}
+}*/
 
 //Student Portal Menu
 void student_portal_menu()
@@ -200,6 +200,9 @@ void student_portal_menu()
 		case'3':
 			active_student.view_courses();
 			break;
+		case '4':
+			cout << "Logged out \n";
+			break;
 		}
 	} while (student_portal_choice != '4');
 }
@@ -229,13 +232,13 @@ void teacher_portal_menu()
 			switch (course_enrollment_choice)
 			{
 			case'1':
-				enroll_teacher_course(active_teacher, course1);
+				active_teacher.enroll_course(course1);
 				break;
 			case'2':
-				enroll_teacher_course(active_teacher, course2);
+				active_teacher.enroll_course(course2);
 				break;
 			case'3':
-				enroll_teacher_course(active_teacher, course3);
+				active_teacher.enroll_course(course3);
 				break;
 			default:
 				cout << "Invalid Choice" << endl;
@@ -251,13 +254,13 @@ void teacher_portal_menu()
 			switch (course_enrollment_choice)
 			{
 			case'1':
-				enroll_teacher_course(active_teacher, course1);
+				active_teacher.remove_course(course1);
 				break;
 			case'2':
-				enroll_teacher_course(active_teacher, course2);
+				active_teacher.remove_course(course2);
 				break;
 			case'3':
-				enroll_teacher_course(active_teacher, course3);
+				active_teacher.remove_course(course3);
 				break;
 			default:
 				cout << "Invalid Choice" << endl;
@@ -265,6 +268,9 @@ void teacher_portal_menu()
 			break;
 		case'3':
 			active_teacher.view_courses();
+			break;
+		case '4':
+			cout << "Logged out \n";
 			break;
 		}
 	} while (teacher_portal_choice != '4');
@@ -353,6 +359,7 @@ int main()
 		cout << "1. Student Portal" << endl;
 		cout << "2. Course Portal" << endl;
 		cout << "3. Teacher Portal" << endl;
+		cout << "4. Exit Program" << endl;
 		cout << "Choice: ";
 		cin >> menu_choice;
 		switch (menu_choice)
@@ -378,7 +385,7 @@ int main()
 				login(student_login_name, student_login_password);
 				break;
 			case'3':
-				
+				cout << "Logged out \n";
 				break;
 			}
 			
@@ -424,12 +431,17 @@ int main()
 				cin >> teacher_login_name;
 				cout << "Enter Password: ";
 				cin >> teacher_login_password;
-				login(teacher_login_name, teacher_login_password);
+				login_teacher(teacher_login_name, teacher_login_password);
 				break;
 			case '3':
+				cout << "Logged out \n";
 				break;
 			}
+		case '4':
+			cout << "Exiting...";
+			return 0;
 		}
 
 	} while (menu_choice != '4');
+
 }

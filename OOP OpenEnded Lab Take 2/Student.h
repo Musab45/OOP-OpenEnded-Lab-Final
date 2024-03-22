@@ -76,14 +76,13 @@ public:
 	void view_courses()
 	{
 		if (enrolled_courses.empty()) {
-			cout << "List is Empty";
+			cout << "No course to remove!";
 		}
 		for (auto item : enrolled_courses) 
 		{
 			cout << item << " ";
 		}
 		cout << endl;
-
 	}
 	//writing data in files
 	/*void writeToFile(ofstream& outFile) {
