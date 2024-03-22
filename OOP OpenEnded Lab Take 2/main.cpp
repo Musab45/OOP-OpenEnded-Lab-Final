@@ -126,20 +126,6 @@ void create_teacher_account()
 	}
 }
 
-
-
-void enroll_course(Student student, Course course)
-{
-	student.enroll_course(student, course);
-	course.add_student(student.get_student_name());
-}
-
-void remove_course(Student student, Course course)
-{
-	student.remove_course(student, course);
-	course.remove_student(student.get_student_name());
-}
-
 //For Teacher
 void enroll_teacher_course(Teacher teacher, Course course)
 {
@@ -177,13 +163,13 @@ void student_portal_menu()
 			switch (course_enrollment_choice)
 			{
 			case'1':
-				enroll_course(active_student, course1);
+				active_student.enroll_course(course1);
 				break;
 			case'2':
-				enroll_course(active_student, course2);
+				active_student.enroll_course(course2);
 				break;
 			case'3':
-				enroll_course(active_student, course3);
+				active_student.enroll_course(course3);
 				break;
 			default:
 				cout<< "Invalid Choice" << endl;
@@ -199,13 +185,13 @@ void student_portal_menu()
 			switch (course_enrollment_choice)
 			{
 			case'1':
-				enroll_course(active_student, course1);
+				active_student.remove_course(course1);
 				break;
 			case'2':
-				enroll_course(active_student, course2);
+				active_student.remove_course(course2);
 				break;
 			case'3':
-				enroll_course(active_student, course3);
+				active_student.remove_course(course3);
 				break;
 			default:
 				cout << "Invalid Choice" << endl;
@@ -360,7 +346,7 @@ int main()
 	string student_login_password;
 	string teacher_login_name;
 	string teacher_login_password;
-
+	
 
 	do
 	{
@@ -444,7 +430,6 @@ int main()
 				break;
 			}
 		}
-		
 
 	} while (menu_choice != '4');
 }

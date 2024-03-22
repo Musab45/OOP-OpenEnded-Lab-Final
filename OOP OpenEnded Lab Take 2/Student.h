@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<fstream>
 #include<list>
 #include<vector>
 #include"Course.h"
@@ -54,20 +55,29 @@ public:
 	}
 
 	//Methods
-	void enroll_course(Student student, Course course)
+	void enroll_course(Course course)
 	{
 		enrolled_courses.push_back(course.get_course_name());
 		cout << "Course added successfully!" << endl;
 	}
 
-	void remove_course(Student student,Course course)
+	void remove_course(Course course)
 	{
-		student.enrolled_courses.remove(course.get_course_name());
-		cout << "Course removed successfully!" << endl;
+		for (auto it = enrolled_courses.begin(); it != enrolled_courses.end(); ++it) {
+			if (*it == course.get_course_name()){
+				enrolled_courses.erase(it);
+				cout << "Course removed successfully!" << endl;
+				return;
+			}
+		}
+		cout << "Course Not Found";
 	}
 
 	void view_courses()
 	{
+		if (enrolled_courses.empty()) {
+			cout << "List is Empty";
+		}
 		for (auto item : enrolled_courses) 
 		{
 			cout << item << " ";
@@ -75,5 +85,16 @@ public:
 		cout << endl;
 
 	}
+	//writing data in files
+	/*void writeToFile(ofstream& outFile) {
+		outFile << student_id << "  " << student_name << "  ";
+		for (string course : enrolled_courses) {
+			outFile << course;
+		}
+		outFile << endl;
+	}
+	void readFromFile(ifstream& inFile) {
+		inFile >> student_id >> student_name;
+	}*/
 };
 
