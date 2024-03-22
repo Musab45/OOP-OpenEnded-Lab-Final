@@ -264,7 +264,7 @@ void teacher_portal_menu()
 }
 
 
-//Login
+//Login for student
 void login(string name, string password)
 {
 	bool login_succesful = false;
@@ -335,6 +335,8 @@ void login_teacher(string name, string password)
 }
 int main()
 {
+	Course course;
+	string student_name;
 	string student_login_name;
 	string student_login_password;
 	string teacher_login_name;
@@ -387,15 +389,19 @@ int main()
 			switch (course_portal_choice)
 			{
 			case'1':
-				cout << "Enter the name of the student you want to add: ";
-				//string student_name;
-				//cin >> student_name;
-				course1.add_student("sara");
+				cout << "Enter the name of the student you want to add: "<<endl;
+				cin.ignore();
+				getline(cin, student_name);
+				course.add_student(student_name);
 				break;
 			case'2':
-				course1.view_students();
+				course.view_students();
 				break;
 			case'3':
+				cout << "Enter the name of the student you want to remove: " << endl;
+				cin.ignore();
+				getline(cin, student_name);
+				course.remove_student(student_name);
 				break;
 			}
 

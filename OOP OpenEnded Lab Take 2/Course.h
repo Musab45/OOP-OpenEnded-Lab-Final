@@ -34,13 +34,16 @@ public:
 		enrolled_students.push_back(student_name);
 		cout << "Student added successfully!" << endl;
 	}
-
 	void remove_student(string student_name)
 	{
-		/*cout << "Enter the name of the student you want to remove: ";
-		cin >> student_name;*/
-		enrolled_students.remove(student_name);
-		cout << "Student removed successfully!" << endl;
+		for (auto it = enrolled_students.begin(); it != enrolled_students.end(); ++it) {
+			if (*it == student_name) {
+				enrolled_students.erase(it);
+				cout << "Student removed successfully!" << endl;
+				return;
+			}
+		}
+		cout << "Student Not Found";
 	}
 
 	void view_students()
